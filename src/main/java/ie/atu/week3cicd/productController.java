@@ -29,8 +29,29 @@ public class productController {
         return newProduct;
    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<List> updateProduct(@PathVariable String id ,  @RequestBody Product uProduct){
+        for(Product p : productList){
+            if(p.getId().equals(id)){
+                productList.remove(p);
+            }
+        }
+
+        productList.add(uProduct);
+        return ResponseEntity.ok(productList);
+    }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<List>  deleteProduct(@PathVariable String id){
+        for(Product p : productList){
+            if(p.getId().equals(id)){
+                productList.remove(p);
+            }
+        }
+        return ResponseEntity.ok(productList);
+
+    }
 
 
 }
